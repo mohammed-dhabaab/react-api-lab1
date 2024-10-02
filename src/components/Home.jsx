@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
-
+import styles from '../styles'
 function Home() {
     const [data, setData] = useState([])
 
@@ -18,18 +18,29 @@ function Home() {
         fetchData();
     }, []);
     return (
-        <div>
-            {data.map((item) => {
-                return (
-                    <div key={item.id}>
-                        <h2>{item.title}</h2>
-                        <p>Price: ${item.price}</p>
-                        <img src={item.image} alt={item.title} style={{ width: '100px' }} />
-                        <p>{item.description}</p>
-                    </div>
-                );
-            })}
-        </div>
+        <main className={``}>
+            <h1 class="main-title">Clotherz</h1>
+            <p class="sub-title">Your New Way of Style!</p>
+
+            <div className='main-container'>
+                {data.map((item) => {
+                    return (
+                        <div className='card-container' key={item.id} >
+                            <div className='card-container-image'>
+                                <img className='card-image' src={item.image} alt={item.title} />
+
+                            </div>
+                            <div className='card-text-container'>
+                                <h2 className='product-title'>{item.title}</h2>
+                                <p className='product-des'>{item.description.slice(0, 100)}...</p>
+                                <p className='product-price'>Price: ${item.price}</p>
+                            </div>
+                        </div>
+                    );
+                })}
+            </div>
+
+        </main>
     )
 }
 
